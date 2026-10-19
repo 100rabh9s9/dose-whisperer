@@ -97,7 +97,6 @@ The train/validation/test split is done so that an original prescription and its
 
 ## Repository Structure
 
-> Adjust names to match your actual files.
 
 ```
 dose-whisperer/
