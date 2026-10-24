@@ -168,16 +168,15 @@ The original plan listed Qwen2.5-3B-Instruct, Phi-3-mini and Llama-3.2-3B; the e
 
 | Item | Value |
 |---|---|
-| Base model | `<fill in>` |
-| Learning rate | `<fill in>` |
-| Epochs | `<fill in>` |
-| Batch size (grad. accumulation) | `<fill in>` |
-| LoRA rank / alpha / dropout | `<fill in>` |
-| Target modules | `<fill in>` |
+| Base model | google/medgemma-4b-it && microsoft/Phi-3-mini-4k-instruct|
+| Learning rate | 1e-4 (cosine schedule, 5% warmup) |
+| Epochs | 2 (the code uses 1 in quick mode) |
+| Batch size (grad. accumulation) | 8 per device × 2 accumulation steps = 16 effective (A100 profile) |
+| LoRA rank / alpha / dropout | 16 / 32 / 0.05 |
 | Quantization | 4-bit NF4 (QLoRA) |
-| Training time | `<fill in>` |
-| GPU / peak VRAM | `<fill in>` |
-| Seed | `<fill in>` |
+| Training time |  |
+| GPU / peak VRAM | |
+| Seed | 42 |
 
 Measured QLoRA inference memory per example: 3.38 GB (Phi-3-mini), 3.75 GB (MedGemma-4B).
 
@@ -309,7 +308,7 @@ Real, clinician-reviewed error sets; more drugs with verified label limits and f
 
 ## 12. Licenses and Acknowledgements
 
-- **Code:** `<choose and add a license>`.
+- **Code:** 
 - **Phi-3-mini-4k-instruct:** MIT license (Microsoft).
 - **MedGemma-4B-it:** released under Google's health-model terms; review them before redistributing derived weights. Gated access.
 - **Adapters:** derived from the base models above; consult each base model's license. The adapter repository is currently marked MIT on Hugging Face; confirm this is compatible with the base model's terms.
@@ -325,5 +324,4 @@ Real, clinician-reviewed error sets; more drugs with verified label limits and f
   note   = {Team 07 research prototype. Adapter: https://huggingface.co/100rabhs/dose-whisperer-phi3-qlora}
 }
 ```
-
 *Dose Whisperer is a research prototype, not a medical device or a substitute for clinical judgment.*
